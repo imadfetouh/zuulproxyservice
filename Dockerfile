@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk-alpine
+FROM openjdk:11
 EXPOSE 8080
 ARG JAR_FILE=/zuulproxyservice/target/zuulproxyservice-0.0.1-SNAPSHOT.jar
 ADD ${JAR_FILE} app.jar
