@@ -8,8 +8,8 @@ services:
       - "5672:5672"
 
   jwtservice:
-    image: imadelfetouh99/jwtservice
+    image: imadelfetouh99/jwtservice:latest
     container_name: jwtservice
     restart: always
     environment:
-      RABBIT_HOST: localhost
+      RABBIT_HOST: rabbit

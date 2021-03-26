@@ -1,7 +1,5 @@
 package com.imadelfetouh.zuulproxyservice.rabbit;
 
-import com.rabbitmq.client.Channel;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
