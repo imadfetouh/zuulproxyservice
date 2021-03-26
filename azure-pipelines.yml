@@ -19,7 +19,7 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'zuulproxyservice/pom.xml'
-    goals: 'clean install sonar:sonar'
+    goals: '-e clean install sonar:sonar'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
