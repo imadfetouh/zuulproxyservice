@@ -1,0 +1,15 @@
+spring:
+    application:
+        name: zuulproxyservice
+
+zuul:
+    host:
+        connect-timeout-millis: 20000
+        socket-timeout-millis: 20000
+    routes:
+        signin:
+            url: http://authservice-service:8080/auth
+            sensitiveHeaders:
+
+server:
+    port: 8080

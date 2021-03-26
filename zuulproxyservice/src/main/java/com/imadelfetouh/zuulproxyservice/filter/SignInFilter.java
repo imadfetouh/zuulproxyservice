@@ -45,6 +45,7 @@ public class SignInFilter extends ZuulFilter {
                 CreateTokenProducer createTokenProducer = new CreateTokenProducer(userId);
                 String token = rabbitProducer.produce(createTokenProducer);
 
+                requestContext.addZuulResponseHeader("Set-Cookie", "jwt-token="+token+"; Domain:localhost; Path=/; HttpOnly");
                 requestContext.setResponseBody(token);
             }
         }
