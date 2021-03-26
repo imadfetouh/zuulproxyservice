@@ -1,7 +1,6 @@
 package com.imadelfetouh.zuulproxyservice;
 
 import com.imadelfetouh.zuulproxyservice.filter.SignInFilter;
-import org.checkerframework.checker.units.qual.C;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
@@ -30,6 +29,7 @@ public class ZuulproxyserviceApplication {
         corsConfiguration.addAllowedOrigin("http://localhost:3000");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.addAllowedMethod("POST");
+        corsConfiguration.setAllowCredentials(true);
 
         source.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(source);
