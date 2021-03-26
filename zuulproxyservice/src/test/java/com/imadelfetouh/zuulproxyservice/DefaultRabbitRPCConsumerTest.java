@@ -17,7 +17,7 @@ import java.util.concurrent.BlockingQueue;
 public class DefaultRabbitRPCConsumerTest {
 
     @Test
-    public void testConstructor() throws IOException {
+    public void testQueueCorrect() throws IOException {
         RabbitConfiguration rabbitConfiguration = RabbitConfiguration.getInstance();
         Channel channel = rabbitConfiguration.getChannel();
         AMQP.BasicProperties properties = RabbitConfig.getInstance().getProperties("corrId", "replyTo");
@@ -27,5 +27,18 @@ public class DefaultRabbitRPCConsumerTest {
         defaultRabbitRPCConsumer.handleDelivery(null, null, properties, "testmessage".getBytes(StandardCharsets.UTF_8));
 
         Assertions.assertTrue(blockingQueue.contains("testmessage"));
+    }
+
+    @Test
+    public void testQueueInCorrect() throws IOException {
+        RabbitConfiguration rabbitConfiguration = RabbitConfiguration.getInstance();
+        Channel channel = rabbitConfiguration.getChannel();
+        AMQP.BasicProperties properties = RabbitConfig.getInstance().getProperties("corrIdd", "replyTo");
+
+        BlockingQueue<String> blockingQueue = new ArrayBlockingQueue<>(1);
+        DefaultRabbitRPCConsumer defaultRabbitRPCConsumer = new DefaultRabbitRPCConsumer(channel, blockingQueue, "corrId");
+        defaultRabbitRPCConsumer.handleDelivery(null, null, properties, "testmessage".getBytes(StandardCharsets.UTF_8));
+
+        Assertions.assertFalse(blockingQueue.contains("testmessage"));
     }
 }

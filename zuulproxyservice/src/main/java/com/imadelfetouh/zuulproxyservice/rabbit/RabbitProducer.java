@@ -7,10 +7,6 @@ public class RabbitProducer<T> extends ChannelHelper {
 
     private static final Logger logger = Logger.getLogger(RabbitProducer.class.getName());
 
-    public RabbitProducer() {
-
-    }
-
     public T produce(Producer<T> producer) {
         try {
             return producer.produce(getChannel());

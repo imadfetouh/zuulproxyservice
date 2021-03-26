@@ -6,10 +6,6 @@ public class RabbitConfig {
 
     private static final RabbitConfig rabbitConfig = new RabbitConfig();
 
-    private RabbitConfig() {
-
-    }
-
     public static RabbitConfig getInstance() {
         return rabbitConfig;
     }

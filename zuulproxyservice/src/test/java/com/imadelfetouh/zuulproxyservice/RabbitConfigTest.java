@@ -9,6 +9,13 @@ import org.junit.jupiter.api.Test;
 public class RabbitConfigTest {
 
     @Test
+    public void testConstructor() {
+        RabbitConfig rabbitConfig = RabbitConfig.getInstance();
+
+        Assertions.assertEquals(rabbitConfig, RabbitConfig.getInstance());
+    }
+
+    @Test
     public void testProperties() {
         AMQBasicProperties properties = RabbitConfig.getInstance().getProperties("corrId", "replyTo");
 
