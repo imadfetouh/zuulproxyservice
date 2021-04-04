@@ -43,7 +43,7 @@ public class SignInFilter extends ZuulFilter {
                 Gson gson = new Gson();
                 String response = CharStreams.toString(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
                 AuthModel authModel = gson.fromJson(response, AuthModel.class);
-                int userId = authModel.getUserId();
+                String userId = authModel.getUserId();
 
                 RabbitProducer<String> rabbitProducer = new RabbitProducer<>();
                 CreateTokenProducer createTokenProducer = new CreateTokenProducer(userId);

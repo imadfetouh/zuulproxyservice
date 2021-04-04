@@ -22,9 +22,9 @@ public class CreateTokenProducer implements Producer<String> {
     private final RabbitConfig rabbitConfig;
     private final String corrId;
     private final String REQUEST_QUEUE_NAME;
-    private final Integer userId;
+    private final String userId;
 
-    public CreateTokenProducer(Integer userId) {
+    public CreateTokenProducer(String userId) {
         rabbitConfig = RabbitConfig.getInstance();
         corrId = UUID.randomUUID().toString();
         REQUEST_QUEUE_NAME = "createtoken_queue";

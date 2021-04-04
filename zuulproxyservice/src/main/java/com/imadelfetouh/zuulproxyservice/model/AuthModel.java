@@ -4,25 +4,27 @@ import java.io.Serializable;
 
 public class AuthModel implements Serializable {
 
-    private int userId;
+    private String userId;
     private String username;
     private String photo;
+    private String role;
 
     public AuthModel() {
 
     }
 
-    public AuthModel(int userId, String username, String photo) {
+    public AuthModel(String userId, String username, String photo, String role) {
         this.userId = userId;
         this.username = username;
         this.photo = photo;
+        this.role = role;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
@@ -40,5 +42,13 @@ public class AuthModel implements Serializable {
 
     public String getPhoto() {
         return photo;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
     }
 }

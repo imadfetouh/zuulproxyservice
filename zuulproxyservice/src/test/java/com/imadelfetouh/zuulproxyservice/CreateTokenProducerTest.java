@@ -15,7 +15,7 @@ public class CreateTokenProducerTest {
     @Test
     public void testCreateTokenCorrect() {
         RabbitProducer<String> rabbitProducer = new RabbitProducer<>();
-        CreateTokenProducer createTokenProducer = new CreateTokenProducer(1);
+        CreateTokenProducer createTokenProducer = new CreateTokenProducer("1");
 
         String token = rabbitProducer.produce(createTokenProducer);
 
@@ -25,7 +25,7 @@ public class CreateTokenProducerTest {
     @Test
     public void testCreateTokenCorrectWithoutRabbitProducer() throws IOException, TimeoutException {
         Channel channel = RabbitConfiguration.getInstance().getChannel();
-        CreateTokenProducer createTokenProducer = new CreateTokenProducer(1);
+        CreateTokenProducer createTokenProducer = new CreateTokenProducer("1");
 
         String token = createTokenProducer.produce(channel);
         channel.close();

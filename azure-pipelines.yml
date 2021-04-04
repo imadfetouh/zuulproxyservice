@@ -12,7 +12,7 @@ steps:
   inputs:
     containerregistrytype: 'Container Registry'
     dockerRegistryEndpoint: 'DockerRegistry'
-    dockerComposeFile: 'docker-compose.yml'
+    dockerComposeFile: 'docker/docker-compose.yml'
     action: 'Run a Docker Compose command'
     dockerComposeCommand: 'up -d'
 
@@ -34,7 +34,7 @@ steps:
     containerRegistry: 'DockerRegistry'
     repository: 'imadelfetouh99/zuulproxyservice'
     command: 'buildAndPush'
-    Dockerfile: 'Dockerfile'
+    Dockerfile: 'docker/Dockerfile'
     buildContext: 
     tags: 'latest'
     
