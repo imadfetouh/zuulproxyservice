@@ -14,6 +14,13 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 public class SignInFilter extends ZuulFilter {
+
+    private final String url;
+
+    public SignInFilter() {
+        url = "http://localhost:8080/signin";
+    }
+
     @Override
     public String filterType() {
         return "post";
@@ -26,8 +33,9 @@ public class SignInFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        RequestContext requestContext = RequestContext.getCurrentContext();
-        return requestContext.get("proxy") != null && requestContext.get("proxy").equals("signin");
+        final RequestContext context = RequestContext.getCurrentContext();
+        final String requestURI = context.getRequest().getRequestURI();
+        return requestURI.equals(url);
     }
 
     @Override
