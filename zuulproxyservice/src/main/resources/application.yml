@@ -11,13 +11,13 @@ zuul:
             url: http://authservice-service:8081/auth/signin
             sensitiveHeaders:
         tweet:
-            url: http://localhost:8082/tweet
+            url: http://tweetservice-service:8082/tweet
             sensitiveHeaders:
         like:
-            url: http://localhost:8082/like
+            url: http://tweetservice-service:8082/like
             sensitiveHeaders:
         trend:
-            url: http://localhost:8082/trend
+            url: http://tweetservice-service:8082/trend
             sensitiveHeaders:
 
 server:
