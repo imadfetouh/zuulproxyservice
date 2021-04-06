@@ -8,8 +8,10 @@ zuul:
         socket-timeout-millis: 20000
     routes:
         signin:
-            url: http://authservice-service:8080/auth/signin
+            url: http://localhost:8081/auth/signin
             sensitiveHeaders:
+        tweets:
+            url: http://localhost
 
 server:
     port: 8080

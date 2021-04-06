@@ -1,5 +1,6 @@
 package com.imadelfetouh.zuulproxyservice;
 
+import com.imadelfetouh.zuulproxyservice.filter.JWTFilter;
 import com.imadelfetouh.zuulproxyservice.filter.SignInFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +21,11 @@ public class ZuulproxyserviceApplication {
     @Bean
     public SignInFilter signInFilter() {
         return new SignInFilter();
+    }
+
+    @Bean
+    public JWTFilter jwtFilter() {
+        return new JWTFilter();
     }
 
     @Bean

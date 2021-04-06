@@ -10,15 +10,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import java.io.InputStream;
-
 public class SignInFilterTest {
 
     @Test
     public void testAttributes() {
         SignInFilter signInFilter = new SignInFilter();
 
-        MockHttpServletRequest request = new MockHttpServletRequest("POST", "http://localhost:8080/signin");
+        MockHttpServletRequest request = new MockHttpServletRequest("POST", "/signin");
         RequestContext context = new RequestContext();
         context.setRequest(request);
         RequestContext.testSetCurrentContext(context);
@@ -35,7 +33,7 @@ public class SignInFilterTest {
         AuthModel authModel = new AuthModel("1", "imad", "imad.jpg", "ADMINISTRATOR");
         String authGson = gson.toJson(authModel);
 
-        MockHttpServletRequest request = new MockHttpServletRequest("POST", "http://localhost:8080/signin");
+        MockHttpServletRequest request = new MockHttpServletRequest("POST", "/signin");
         RequestContext context = new RequestContext();
         MockHttpServletResponse response = new MockHttpServletResponse();
 

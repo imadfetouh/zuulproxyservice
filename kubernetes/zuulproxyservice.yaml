@@ -17,7 +17,7 @@ spec:
       containers:
         - name: zuulproxyservice
           imagePullPolicy: Always
-          image: imadelfetouh99/zuulproxyservice
+          image: imadelfetouh99/zuulproxyservice:latest
           ports:
             - containerPort: 8080
           env:

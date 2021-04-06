@@ -15,10 +15,10 @@ import java.nio.charset.StandardCharsets;
 
 public class SignInFilter extends ZuulFilter {
 
-    private final String url;
+    private final String uri;
 
     public SignInFilter() {
-        url = "http://localhost:8080/signin";
+        uri = "/signin";
     }
 
     @Override
@@ -35,7 +35,7 @@ public class SignInFilter extends ZuulFilter {
     public boolean shouldFilter() {
         final RequestContext context = RequestContext.getCurrentContext();
         final String requestURI = context.getRequest().getRequestURI();
-        return requestURI.equals(url);
+        return requestURI.equals(uri);
     }
 
     @Override
