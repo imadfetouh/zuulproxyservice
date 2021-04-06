@@ -22,7 +22,11 @@ spec:
             - containerPort: 8080
           env:
             - name: RABBIT_HOST
-              value: rabbit-internal-service
+              value: rabbit-service
+            - name: AUTHSERVICE_HOST
+              value: authservice-service
+            - name: TWEETSERVICE_HOST
+              value: tweetservice-service
 ---
 apiVersion: v1
 kind: Service
