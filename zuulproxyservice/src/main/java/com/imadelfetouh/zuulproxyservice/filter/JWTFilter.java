@@ -51,11 +51,11 @@ public class JWTFilter extends ZuulFilter {
                 requestContext.addZuulRequestHeader("Set-Cookie", "jwt-token="+token+"; Path=/; HttpOnly; Same-Site=Strict");
             }
             else{
-                requestContext.setResponseStatusCode(500);
+                requestContext.setResponseStatusCode(401);
             }
         }
         else{
-            requestContext.setResponseStatusCode(500);
+            requestContext.setResponseStatusCode(401);
         }
 
         return null;
