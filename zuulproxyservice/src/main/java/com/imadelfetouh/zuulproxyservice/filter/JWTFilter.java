@@ -40,6 +40,12 @@ public class JWTFilter extends ZuulFilter {
     public Object run() throws ZuulException {
         RequestContext requestContext = RequestContext.getCurrentContext();
         Cookie[] cookies = requestContext.getRequest().getCookies();
+        if(cookies == null || cookies.length == 0) {
+            requestContext.setResponseStatusCode(401);
+            requestContext.setSendZuulResponse(false);
+            return null;
+        }
+
         Cookie cookie = Arrays.stream(cookies).filter(c -> c.getName().equals(cookieName)).findFirst().orElse(null);
 
         if(cookie != null) {
@@ -52,10 +58,12 @@ public class JWTFilter extends ZuulFilter {
             }
             else{
                 requestContext.setResponseStatusCode(401);
+                requestContext.setSendZuulResponse(false);
             }
         }
         else{
             requestContext.setResponseStatusCode(401);
+            requestContext.setSendZuulResponse(false);
         }
 
         return null;
