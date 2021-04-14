@@ -1,7 +1,6 @@
 package com.imadelfetouh.zuulproxyservice.filter;
 
-import com.imadelfetouh.zuulproxyservice.producer.ValidateTokenProducer;
-import com.imadelfetouh.zuulproxyservice.rabbit.RabbitProducer;
+import com.imadelfetouh.zuulproxyservice.jwt.ValidateJWTToken;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -49,14 +48,8 @@ public class JWTFilter extends ZuulFilter {
         Cookie cookie = Arrays.stream(cookies).filter(c -> c.getName().equals(cookieName)).findFirst().orElse(null);
 
         if(cookie != null) {
-            RabbitProducer<String> rabbitProducer = new RabbitProducer<>();
-            ValidateTokenProducer validateTokenProducer = new ValidateTokenProducer(cookie.getValue());
-            String token = rabbitProducer.produce(validateTokenProducer);
-
-            if(token != null) {
-                requestContext.addZuulRequestHeader("Set-Cookie", "jwt-token="+token+"; Path=/; HttpOnly; Same-Site=Strict");
-            }
-            else{
+            String userData = ValidateJWTToken.getInstance().getUserData(cookie.getValue());
+            if(userData == null) {
                 requestContext.setResponseStatusCode(401);
                 requestContext.setSendZuulResponse(false);
             }

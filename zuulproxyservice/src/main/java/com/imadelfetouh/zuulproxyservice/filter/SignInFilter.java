@@ -1,10 +1,7 @@
 package com.imadelfetouh.zuulproxyservice.filter;
 
 import com.google.common.io.CharStreams;
-import com.google.gson.Gson;
-import com.imadelfetouh.zuulproxyservice.model.AuthModel;
-import com.imadelfetouh.zuulproxyservice.producer.CreateTokenProducer;
-import com.imadelfetouh.zuulproxyservice.rabbit.RabbitProducer;
+import com.imadelfetouh.zuulproxyservice.jwt.CreateJWTToken;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -12,6 +9,8 @@ import com.netflix.zuul.exception.ZuulException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignInFilter extends ZuulFilter {
 
@@ -48,17 +47,13 @@ public class SignInFilter extends ZuulFilter {
 
         try(InputStream inputStream  = requestContext.getResponseDataStream()){
             if(inputStream != null){
-                Gson gson = new Gson();
                 String response = CharStreams.toString(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-                AuthModel authModel = gson.fromJson(response, AuthModel.class);
-                String userId = authModel.getUserId();
 
-                RabbitProducer<String> rabbitProducer = new RabbitProducer<>();
-                CreateTokenProducer createTokenProducer = new CreateTokenProducer(userId);
-                String token = rabbitProducer.produce(createTokenProducer);
+                Map<String, String> claims = new HashMap<>();
+                claims.put("userdata", response);
+                String token = CreateJWTToken.getInstance().create(claims);
 
                 requestContext.addZuulResponseHeader("Set-Cookie", "jwt-token="+token+"; Path=/; HttpOnly; Same-Site=Strict");
-                requestContext.setResponseBody(gson.toJson(authModel));
             }
         }
         catch (Exception e){
