@@ -2,7 +2,7 @@ package com.imadelfetouh.zuulproxyservice;
 
 import com.google.gson.Gson;
 import com.imadelfetouh.zuulproxyservice.filter.SignInFilter;
-import com.imadelfetouh.zuulproxyservice.model.AuthModel;
+import com.imadelfetouh.zuulproxyservice.model.UserData;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.junit.jupiter.api.Assertions;
@@ -30,8 +30,8 @@ public class SignInFilterTest {
     public void testFilter() throws ZuulException {
         SignInFilter signInFilter = new SignInFilter();
         Gson gson = new Gson();
-        AuthModel authModel = new AuthModel("1", "imad", "imad.jpg", "ADMINISTRATOR");
-        String authGson = gson.toJson(authModel);
+        UserData userData = new UserData("1", "imad", "ADMINISTRATOR");
+        String authGson = gson.toJson(userData);
 
         MockHttpServletRequest request = new MockHttpServletRequest("POST", "/signin");
         RequestContext context = new RequestContext();
