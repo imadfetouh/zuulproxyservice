@@ -12,12 +12,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignInFilter extends ZuulFilter {
+public class SignInSignUpFilter extends ZuulFilter {
 
-    private final String uri;
+    private final String signinURI;
+    private final String signupURI;
 
-    public SignInFilter() {
-        uri = "/signin";
+    public SignInSignUpFilter() {
+        signinURI = "/signin";
+        signupURI = "/signup";
     }
 
     @Override
@@ -34,7 +36,7 @@ public class SignInFilter extends ZuulFilter {
     public boolean shouldFilter() {
         final RequestContext context = RequestContext.getCurrentContext();
         final String requestURI = context.getRequest().getRequestURI();
-        return requestURI.equals(uri);
+        return requestURI.equals(signinURI) || requestURI.equals(signupURI);
     }
 
     @Override
@@ -54,6 +56,7 @@ public class SignInFilter extends ZuulFilter {
                 String token = CreateJWTToken.getInstance().create(claims);
 
                 requestContext.addZuulResponseHeader("Set-Cookie", "jwt-token="+token+"; Path=/; HttpOnly; Same-Site=Strict");
+                requestContext.setResponseBody(response);
             }
         }
         catch (Exception e){

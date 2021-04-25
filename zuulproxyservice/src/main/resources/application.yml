@@ -10,6 +10,9 @@ zuul:
         signin:
             url: http://authservice-service:8081/auth/signin
             sensitiveHeaders:
+        signup:
+            url: http://userservice-service:8087/user
+            sensitiveHeaders:
         tweet:
             url: http://tweetservice-service:8082/tweet
             sensitiveHeaders:

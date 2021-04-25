@@ -11,10 +11,12 @@ import java.util.Arrays;
 public class JWTFilter extends ZuulFilter {
 
     private final String signinURI;
+    private final String signupURI;
     private final String cookieName;
 
     public JWTFilter() {
         signinURI = "/signin";
+        signupURI = "/signup";
         cookieName = "jwt-token";
     }
 
@@ -32,7 +34,7 @@ public class JWTFilter extends ZuulFilter {
     public boolean shouldFilter() {
         final RequestContext context = RequestContext.getCurrentContext();
         final String requestURI = context.getRequest().getRequestURI();
-        return !requestURI.equals(signinURI);
+        return !requestURI.equals(signinURI) && !requestURI.equals(signupURI);
     }
 
     @Override

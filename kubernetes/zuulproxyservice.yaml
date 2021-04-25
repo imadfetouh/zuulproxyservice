@@ -21,12 +21,12 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: RABBIT_HOST
-              value: rabbit-service
-            - name: AUTHSERVICE_HOST
-              value: authservice-service
-            - name: TWEETSERVICE_HOST
-              value: tweetservice-service
+            - name: secretkey
+              value: secretkeyforkwetterimadinjwt@semester6
+          resources:
+            limits:
+              memory: 256Mi
+              cpu: 100m
 ---
 apiVersion: v1
 kind: Service

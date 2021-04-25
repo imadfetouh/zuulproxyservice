@@ -1,7 +1,7 @@
 package com.imadelfetouh.zuulproxyservice;
 
 import com.google.gson.Gson;
-import com.imadelfetouh.zuulproxyservice.filter.SignInFilter;
+import com.imadelfetouh.zuulproxyservice.filter.SignInSignUpFilter;
 import com.imadelfetouh.zuulproxyservice.model.UserData;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -14,7 +14,7 @@ public class SignInFilterTest {
 
     @Test
     public void testAttributes() {
-        SignInFilter signInFilter = new SignInFilter();
+        SignInSignUpFilter signInFilter = new SignInSignUpFilter();
 
         MockHttpServletRequest request = new MockHttpServletRequest("POST", "/signin");
         RequestContext context = new RequestContext();
@@ -28,7 +28,7 @@ public class SignInFilterTest {
 
     @Test
     public void testFilter() throws ZuulException {
-        SignInFilter signInFilter = new SignInFilter();
+        SignInSignUpFilter signInFilter = new SignInSignUpFilter();
         Gson gson = new Gson();
         UserData userData = new UserData("1", "imad", "ADMINISTRATOR");
         String authGson = gson.toJson(userData);
