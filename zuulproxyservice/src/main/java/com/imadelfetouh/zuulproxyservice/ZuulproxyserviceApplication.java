@@ -32,7 +32,7 @@ public class ZuulproxyserviceApplication {
     public CorsFilter corsFilter() {
         final org.springframework.web.cors.UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("http://localhost:3000");
+        corsConfiguration.addAllowedOrigin("http://52.154.216.20:3000");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.addAllowedMethod("POST");
         corsConfiguration.setAllowCredentials(true);
