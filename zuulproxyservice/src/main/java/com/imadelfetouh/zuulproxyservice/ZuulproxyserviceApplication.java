@@ -10,6 +10,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @EnableZuulProxy
 @SpringBootApplication
 public class ZuulproxyserviceApplication {
@@ -34,11 +37,21 @@ public class ZuulproxyserviceApplication {
         final CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("http://52.154.216.20:3000");
         corsConfiguration.addAllowedHeader("*");
-        corsConfiguration.addAllowedMethod("POST");
+        corsConfiguration.setAllowedMethods(getAllowedMethods());
         corsConfiguration.setAllowCredentials(true);
 
         source.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(source);
+    }
+
+    private List<String> getAllowedMethods() {
+        List<String> allowedMethods = new ArrayList<>();
+        allowedMethods.add("POST");
+        allowedMethods.add("GET");
+        allowedMethods.add("PUT");
+        allowedMethods.add("DELETE");
+
+        return allowedMethods;
     }
 
 }
