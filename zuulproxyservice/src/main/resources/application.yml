@@ -8,19 +8,19 @@ zuul:
         socket-timeout-millis: 20000
     routes:
         signin:
-            url: http://authservice-service:8081/auth/signin
+            url: http://localhost:8081/auth/signin
             sensitiveHeaders:
         signup:
-            url: http://userservice-service:8087/user
+            url: http://localhost:8087/user
             sensitiveHeaders:
         tweet:
-            url: http://tweetservice-service:8082/tweet
+            url: http://localhost:8082/tweet
             sensitiveHeaders:
         trend:
-            url: http://tweetservice-service:8082/trend
+            url: http://localhost:8082/trend
             sensitiveHeaders:
         like:
-            url: http://tweetservice-service:8082/like
+            url: http://localhost:8082/like
             sensitiveHeaders:
 
 server:
