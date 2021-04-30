@@ -22,6 +22,9 @@ zuul:
         like:
             url: http://tweetservice-service:8082/like
             sensitiveHeaders:
+        profile:
+            url: http://profileservice-service:8084/profile
+            sensitiveHeaders:
 
 server:
     port: 8080

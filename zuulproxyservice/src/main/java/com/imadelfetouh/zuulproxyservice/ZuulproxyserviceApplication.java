@@ -35,7 +35,7 @@ public class ZuulproxyserviceApplication {
     public CorsFilter corsFilter() {
         final org.springframework.web.cors.UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("http://192.168.178.235:3000");
+        corsConfiguration.addAllowedOrigin("http://52.154.216.20:3000");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.setAllowedMethods(getAllowedMethods());
         corsConfiguration.setAllowCredentials(true);

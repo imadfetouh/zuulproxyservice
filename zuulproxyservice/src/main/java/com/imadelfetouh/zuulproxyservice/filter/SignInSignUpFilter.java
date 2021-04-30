@@ -55,7 +55,7 @@ public class SignInSignUpFilter extends ZuulFilter {
                 claims.put("userdata", response);
                 String token = CreateJWTToken.getInstance().create(claims);
 
-                requestContext.addZuulResponseHeader("Set-Cookie", "jwt-token="+token+"; Path=/; HttpOnly; Same-Site=Strict");
+                requestContext.addZuulResponseHeader("Set-Cookie","jwt-token="+token+"; Domain=52.154.216.20; Path=/; HttpOnly; Same-Site=Strict");
                 requestContext.setResponseBody(response);
             }
         }
