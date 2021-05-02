@@ -7,8 +7,11 @@ import com.netflix.zuul.exception.ZuulException;
 
 import javax.servlet.http.Cookie;
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 public class JWTFilter extends ZuulFilter {
+
+    private final static Logger logger = Logger.getLogger(JWTFilter.class.getName());
 
     private final String signinURI;
     private final String signupURI;
@@ -42,6 +45,7 @@ public class JWTFilter extends ZuulFilter {
         RequestContext requestContext = RequestContext.getCurrentContext();
         Cookie[] cookies = requestContext.getRequest().getCookies();
         if(cookies == null || cookies.length == 0) {
+            logger.info("No cookies found");
             requestContext.setResponseStatusCode(401);
             requestContext.setSendZuulResponse(false);
             return null;
@@ -52,11 +56,13 @@ public class JWTFilter extends ZuulFilter {
         if(cookie != null) {
             String userData = ValidateJWTToken.getInstance().getUserData(cookie.getValue());
             if(userData == null) {
+                logger.info("userdata is null");
                 requestContext.setResponseStatusCode(401);
                 requestContext.setSendZuulResponse(false);
             }
         }
         else{
+            logger.info("cookie jwt-token not found");
             requestContext.setResponseStatusCode(401);
             requestContext.setSendZuulResponse(false);
         }
