@@ -28,6 +28,9 @@ zuul:
         following:
             url: http://followingservice-service:8083/following
             sensitiveHeaders:
+        search:
+            url: http://searchservice-service:8088/search
+            sensitiveHeaders:
         moderatoruser:
             url: http://moderatorservice-service:8086/user
             sensitiveHeaders:
