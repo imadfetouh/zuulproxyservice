@@ -1,15 +1,5 @@
 package com.imadelfetouh.zuulproxyservice;
 
-import com.google.gson.Gson;
-import com.imadelfetouh.zuulproxyservice.filter.SignInSignUpFilter;
-import com.imadelfetouh.zuulproxyservice.model.UserData;
-import com.netflix.zuul.context.RequestContext;
-import com.netflix.zuul.exception.ZuulException;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
-
 public class SignInFilterTest {
 
 //    @Test

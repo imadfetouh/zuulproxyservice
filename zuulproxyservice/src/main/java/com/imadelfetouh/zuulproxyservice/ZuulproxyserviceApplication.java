@@ -1,7 +1,6 @@
 package com.imadelfetouh.zuulproxyservice;
 
 import com.imadelfetouh.zuulproxyservice.filter.JWTFilter;
-import com.imadelfetouh.zuulproxyservice.filter.SignInSignUpFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
@@ -19,11 +18,6 @@ public class ZuulproxyserviceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ZuulproxyserviceApplication.class, args);
-    }
-
-    @Bean
-    public SignInSignUpFilter signInFilter() {
-        return new SignInSignUpFilter();
     }
 
     @Bean
