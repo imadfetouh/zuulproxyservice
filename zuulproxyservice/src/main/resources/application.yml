@@ -19,6 +19,9 @@ zuul:
         trend:
             url: http://tweetservice-service:8082/trend
             sensitiveHeaders:
+        mention:
+            url: http://tweetservice-service:8082/mention
+            sensitiveHeaders:
         like:
             url: http://tweetservice-service:8082/like
             sensitiveHeaders:
