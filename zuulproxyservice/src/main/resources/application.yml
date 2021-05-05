@@ -43,6 +43,9 @@ zuul:
         adminrole:
             url: http://adminservice-service:8085/role
             sensitiveHeaders:
+        logout:
+            url: http://authservice-service:8081/auth/logout
+            sensitiveHeaders:
 
 server:
     port: 8080

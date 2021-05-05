@@ -36,7 +36,8 @@ public class SignInSignUpFilter extends ZuulFilter {
     public boolean shouldFilter() {
         final RequestContext context = RequestContext.getCurrentContext();
         final String requestURI = context.getRequest().getRequestURI();
-        return requestURI.equals(signinURI) || requestURI.equals(signupURI);
+        //return requestURI.equals(signinURI) || requestURI.equals(signupURI);
+        return false;
     }
 
     @Override
